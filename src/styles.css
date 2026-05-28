@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f7fbff;
+  color: #0b1930;
+}
+
+.dark {
+  color-scheme: dark;
+  background: #081629;
+  color: #eef6ff;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@layer components {
+  .app-shell {
+    @apply min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(20,126,232,0.14),transparent_32rem),linear-gradient(180deg,#ffffff,#f3f8ff)] text-slate-950 transition-colors dark:bg-[radial-gradient(circle_at_top_left,rgba(20,126,232,0.18),transparent_32rem),linear-gradient(180deg,#081629,#0b1728)] dark:text-white;
+  }
+
+  .glass {
+    @apply border border-white/70 bg-white/75 shadow-glass backdrop-blur-xl dark:border-white/10 dark:bg-white/10;
+  }
+
+  .panel {
+    @apply border border-slate-200/80 bg-white shadow-soft dark:border-white/10 dark:bg-white/10;
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-med-500 focus:ring-4 focus:ring-med-100 dark:border-white/10 dark:bg-white/10 dark:text-white dark:placeholder:text-slate-400 dark:focus:ring-med-500/20;
+  }
+
+  .label {
+    @apply text-xs font-semibold uppercase tracking-[0.08em] text-slate-500 dark:text-slate-300;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-med-700 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-med-700/20 transition hover:bg-med-800 focus:outline-none focus:ring-4 focus:ring-med-200 dark:shadow-med-900/40;
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-med-200 hover:text-med-700 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:border-med-400;
+  }
+
+  .nav-button {
+    @apply flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-semibold text-slate-600 transition hover:bg-med-50 hover:text-med-700 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white;
+  }
+
+  .nav-button-active {
+    @apply bg-med-700 text-white shadow-lg shadow-med-700/20 hover:bg-med-700 hover:text-white;
+  }
+
+  .stat-card {
+    @apply panel rounded-xl p-5;
+  }
+}
