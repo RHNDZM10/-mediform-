@@ -31,6 +31,15 @@ Frontend: `http://localhost:5173`
 
 API: `http://localhost:8787/api/health`
 
+## Producción local
+
+```bash
+npm run build
+NODE_ENV=production npm run start
+```
+
+En producción Express sirve el frontend compilado desde `dist` y mantiene la API en `/api`.
+
 ## Variables de entorno
 
 Copia `.env.example` a `.env` y configura:
@@ -43,6 +52,32 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 PUBLIC_URL=https://your-domain.com
 PORT=8787
 ```
+
+En Railway no configures `VITE_API_URL` con una URL externa si frontend y backend viven en el mismo servicio. Déjalo como `/api` o no lo agregues, porque la app ya usa `/api` por defecto.
+
+## Despliegue en Railway
+
+1. Sube este proyecto a GitHub.
+2. En Railway, crea un proyecto nuevo desde ese repo.
+3. Agrega estas variables en Railway:
+
+```bash
+NODE_ENV=production
+JWT_SECRET=un-secreto-largo-y-unico
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+PUBLIC_URL=https://tu-dominio-railway.up.railway.app
+```
+
+4. Ejecuta el SQL de `supabase/schema.sql` en Supabase si vas a usar base de datos real.
+5. Railway usará `railway.json` automáticamente:
+
+```bash
+npm ci && npm run build
+npm run start
+```
+
+El endpoint de salud para verificar el deploy es `/api/health`.
 
 ## Despliegue en Vercel
 
